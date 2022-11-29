@@ -8,8 +8,6 @@ import "./btn-nav-link.scss"
 
 export const SideBar = () => {
     const { sidebarOpen, toggleSidebar } = useContext(contextSideBar)
-    console.log(window.location.pathname === "/select")
-    console.log(window.location.pathname === "/")
 
     return (
         <div className={sidebarOpen ? "sidebar open left" : "sidebar left"}> {/* PARA CAMBIAR EL LADO DONDE SE DESPLEGARA LA BARRA LATERAL CAMBIAR right | left */}
