@@ -1,0 +1,21 @@
+@use "../colors";
+
+.btn-navlink-sidebar {
+    all: unset;
+    background-color: colors.$sidebar-btn-navlink-background;
+    color: colors.$sidebar-btn-navlink-color;
+    cursor: pointer;
+    padding: 0.5em 0;
+    text-align: center;
+    transition: background-color 0.4s, color 0.4s;
+    width: 100%;
+
+    &:hover {
+        background-color: colors.$sidebar-btn-navlink-background-hover;
+        color: colors.$sidebar-btn-navlink-color-hover;
+    }
+    &.active {
+        background-color: colors.$sidebar-btn-navlink-background-active;
+        color: colors.$sidebar-btn-navlink-color-active;
+    }
+}

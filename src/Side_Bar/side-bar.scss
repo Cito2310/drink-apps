@@ -39,5 +39,6 @@ $width-sidebar: 300px; //Required
 }
 
 .sidebar-section-container {
-  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
 }

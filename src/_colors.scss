@@ -1,14 +1,25 @@
 // S C R E E N   L O A D I N G
-    $loading-spinner:   rgb(102, 102, 102);
-    $loading-text:      rgb(102, 102, 102);
+        $loading-spinner:   rgb(102, 102, 102);
+        $loading-text:      rgb(102, 102, 102);
 
 
 // S I D E   B A R
-    $sidebar-toggle-btn-color:  rgb(0, 0, 0);
-    $sidebar-toggle-background: rgba(255, 255, 255, 0.623);
-    // hover
-    $sidebar-toggle-btn-color-hover:  black;
-    $sidebar-toggle-background-hover: rgba(194, 194, 194, 0.61);
-    // active
-    $sidebar-toggle-btn-color-active:  black;
-    $sidebar-toggle-background-active: rgba(71, 71, 71, 0.623);
+    // sidebar-toggle-btn
+        $sidebar-toggle-background: rgba(255, 255, 255, 0.623);
+        $sidebar-toggle-btn-color:  rgb(0, 0, 0);
+        // hover
+        $sidebar-toggle-background-hover: rgba(194, 194, 194, 0.61);
+        $sidebar-toggle-btn-color-hover:  black;
+        // active
+        $sidebar-toggle-background-active: rgba(71, 71, 71, 0.623);
+        $sidebar-toggle-btn-color-active:  black;
+
+    // btn-navlink-sidebar
+        $sidebar-btn-navlink-background: rgba(0, 0, 0, 0);
+        $sidebar-btn-navlink-color: rgb(66, 66, 66);
+        // hover
+        $sidebar-btn-navlink-background-hover: rgba(0, 0, 0, 0.1);
+        $sidebar-btn-navlink-color-hover: black;
+        // active
+        $sidebar-btn-navlink-background-active: rgba(0, 0, 0, 0.2);
+        $sidebar-btn-navlink-color-active: black;
