@@ -5,7 +5,7 @@ $width-sidebar: 300px; //Required
   display: flex; //Required
   flex-direction: column; //Required
   height: 100%; //Required
-  position: absolute; //Required
+  position: fixed; //Required
   top: 0px; //Required
   transition: right 0.3s, left 0.4s ease-in-out;
   width: $width-sidebar; //Required
@@ -13,9 +13,6 @@ $width-sidebar: 300px; //Required
 
 .sidebar.left {left: -$width-sidebar} //required - left sidebar
 .sidebar.open.left {left: 0} //Required - left sidebar
-
-.sidebar.right {right: -$width-sidebar} //required - right sidebar
-.sidebar.open.right {right: 0} //Required - right sidebar
 
 .sidebar-section-top {
   display: flex;

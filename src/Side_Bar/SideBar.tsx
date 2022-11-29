@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { contextSideBar } from './ProviderSideBarController';
 
-import "./btn-sidebar.scss"
+import "./side-bar.scss"
 
 export const SideBar = () => {
     const { sidebarOpen, toggleSidebar } = useContext(contextSideBar)
