@@ -10,6 +10,7 @@ import "./styles/config.scss"
 import "./styles/background-pattern-drink.scss"
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
+import { LayoutProducts } from "./layout/LayoutProducts";
 
 
 export const DrinkApp = () => {
@@ -18,8 +19,8 @@ export const DrinkApp = () => {
   
     useEffect(() => {
         const getProduct = async() => {
-        const { data } = await axios.get("https://node-ts-load-drink.onrender.com/api/product");
-        return data;
+            const { data } = await axios.get("https://node-ts-load-drink.onrender.com/api/product");
+            return data;
         }
         getProduct()
             .then( data => {  setRespProduct({ status: true, data })   })
@@ -30,13 +31,26 @@ export const DrinkApp = () => {
     return (
         <>
             <div id="background-pattern-drink"></div>
-            <LoadingScreen/>
-            {/* <Routes>
-                <Route path="/" element={<CardProductPage products={respProduct.data}/>}/>
-                <Route path="/select" element={<ListSelectPage products={respProduct.data}/>}/>
+            {
+                (respProduct.status) 
+                ?<Routes>
+                    <Route path="/" element={
+                        <LayoutProducts>
+                            <CardProductPage products={respProduct.data}/>
+                        </LayoutProducts>
+                    }/>
+                    
+                    <Route path="/select" element={
+                        <LayoutProducts>
+                            <ListSelectPage products={respProduct.data}/>
+                        </LayoutProducts>
+                    }/>
 
-                <Route path="/*" element={<Navigate to={"/"}/>} />
-            </Routes> */}
+                    <Route path="/*" element={<Navigate to={"/"}/>} />
+                </Routes>
+
+                : <LoadingScreen/>
+            }
         </>
     )
 }
