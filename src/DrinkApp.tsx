@@ -7,7 +7,7 @@ import { ListSelectPage } from './List_Select_Page/ListSelectPage';
 import { LoadingScreen } from "./components/LoadingScreen";
 
 import "./styles/config.scss"
-import "./styles/background-pattern-drink.scss"
+import "./styles/background-pattern.scss"
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
 import { LayoutProducts } from "./layout/LayoutProducts";
@@ -30,7 +30,7 @@ export const DrinkApp = () => {
 
     return (
         <>
-            <div id="background-pattern-drink"></div>
+            <div id="background-pattern"></div>
             {
                 (respProduct.status) 
                 ?<Routes>

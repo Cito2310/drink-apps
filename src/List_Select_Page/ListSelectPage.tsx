@@ -1,13 +1,16 @@
 import { IProduct } from '../interfaces/IProduct';
 
+import "./list-section.scss"
+import { ListItem } from './ListItem';
+
 interface props {
     products: IProduct[]
 }
 
 export const ListSelectPage = ({ products }: props) => {
     return (
-        <>
-            { products.map( product => <h1>{JSON.stringify(product)}</h1>) }
-        </>
+        <section id='list-section'>
+            {products.map( product => <ListItem product={product} />)}
+        </section>
     )
 }
