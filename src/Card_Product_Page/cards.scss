@@ -1,15 +1,15 @@
 @use "../colors.scss";
 
 .card-container {
+    display: grid;
+    grid-template-columns: auto 2.7rem;
     background-color: colors.$card-background;
     border-radius: 10px;
     border: 1px colors.$card-border solid;
     box-shadow: rgba(0,0,0,0.2) 3px 3px 5px;
-    display: flex;
     flex-basis: 0;
     flex-grow: 1;
-    flex-grow: 1;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin: 6px;
     min-width: 300px;
     padding: 8px 9px 8px 12px;
@@ -98,7 +98,6 @@
     display: flex;
     flex-direction: column;
     font-size: 2rem;
-    width: 2.7rem;
     
     i {
         color: colors.$card-color-btn-arrow-amount;
