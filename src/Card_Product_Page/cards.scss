@@ -1,0 +1,123 @@
+@use "../colors.scss";
+
+.card-container {
+    border-radius: 10px;
+    border: 1px colors.$card-border solid;
+    background-color: colors.$card-background;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    margin: 6px;
+    min-width: 300px;
+    padding: 8px 9px 8px 12px;
+    box-shadow: rgba(0,0,0,0.2) 3px 3px 5px;
+    
+    a, p, button {all: unset}
+}
+
+
+// CARD DESCRIPTION STYLE
+.container-description {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-right: 8px;
+    text-transform: uppercase;
+    color: colors.$card-text-first;
+    
+    .text-brand-card {
+        font-family: Montserrat;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .text-flavor-card {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+    .text-category-card {
+        color: colors.$card-text-secondary;
+    }
+    .text-location-card {
+        color: colors.$card-text-secondary;
+        font-size: 0.9rem;
+        font-style: italic;
+        font-weight: 300;
+    }
+    
+    .container-button-and-category-location {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .container-category-location {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .container-button-edit-delete {
+        align-self:flex-end;
+        display: flex;
+        
+        a {
+            aspect-ratio: 1;
+            background-color: colors.$card-background-btn; 
+            color: colors.$card-color-btn;
+            border-radius: 5px;
+            border: 1px colors.$card-border-btn solid;
+            display: flex;
+            cursor: pointer;
+            height: 1.6rem;
+            transition: background-color 0.3s, color 0.3s;
+            margin-left: 6px;
+            
+            i {margin: auto;}
+        }
+        a:hover {
+            color: colors.$card-color-btn-hover;
+            background-color: colors.$card-background-btn-hover;
+        }
+        a:active {
+            color: colors.$card-color-btn-active;
+            background-color: colors.$card-background-btn-active;
+        }
+    }
+    
+    
+}
+
+
+// CARD AMOUNT STYLE
+.container-button-amount {
+    background-color: colors.$card-background-btn-amount;
+    // border: 1px colors.$card-border-btn solid;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    width: 44px;
+    box-shadow: rgba(0,0,0,0.15) 1px 1px 3px;
+    
+    i {
+        cursor: pointer;
+        color: colors.$card-color-btn-arrow-amount;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        transition: color 0.3s;
+    }
+
+    p {
+        color: colors.$card-color-btn-amount;
+        margin: -14px auto; 
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    i:hover {
+        color: colors.$card-color-btn-arrow-hover;
+    }
+    i:active {
+        color: colors.$card-color-btn-arrow-active;
+    }
+}

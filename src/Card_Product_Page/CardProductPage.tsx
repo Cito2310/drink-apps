@@ -1,4 +1,7 @@
 import { IProduct } from '../interfaces/IProduct';
+import { Cards } from './Cards';
+
+import "./card-section.scss"
 
 interface props {
     products: IProduct[]
@@ -6,8 +9,8 @@ interface props {
 
 export const CardProductPage = ({ products }: props) => {
     return (
-        <>
-            { products.map( product => <h1>{JSON.stringify(product)}</h1>) }
-        </>
+        <section id='card-section'>
+            { products.map( product => <Cards product={product} key={product._id + "card"} />) }
+        </section>
     )
 }
