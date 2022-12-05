@@ -9,14 +9,14 @@ export interface IStatusApp {
 
 type TStatusValid = "none" | "delete" | "edit"; 
 
-export const contextSideBar = createContext<IStatusApp>({} as IStatusApp)
+export const contextStatusApp = createContext<IStatusApp>({} as IStatusApp)
 
-export const ProviderSideBar = ({children}: props) => {
+export const ProviderStatusApp = ({children}: props) => {
     const [currentStatusApp, setCurrentStatusApp] = useState<TStatusValid>("none")
-
+    
     return (
-        <contextSideBar.Provider value={{currentStatusApp, setCurrentStatusApp}}>
+        <contextStatusApp.Provider value={{currentStatusApp, setCurrentStatusApp}}>
             {children}
-        </contextSideBar.Provider>
+        </contextStatusApp.Provider>
     )
 }

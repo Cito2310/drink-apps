@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom"
 import axios from "axios";
 
@@ -9,13 +9,16 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import "./styles/config.scss"
 import "./styles/background-pattern.scss"
 
-import { IStateRespProduct } from './interfaces/IStateRespProduct';
 import { LayoutProducts } from "./layout/LayoutProducts";
+
+import { contextStatusApp } from './ProviderStatusApp/ProviderStatusApp';
+
 import { Modal } from "./Modal_Component/Modal";
 
+import { IStateRespProduct } from './interfaces/IStateRespProduct';
 
 export const DrinkApp = () => {
-    const [currentStatusApp, setCurrentStatusApp] = useState("none")
+    const { currentStatusApp } = useContext(contextStatusApp);
     const [respProduct, setRespProduct] = useState<IStateRespProduct>({status: false, data: []})
   
     useEffect(() => {
@@ -32,7 +35,7 @@ export const DrinkApp = () => {
     return (
         <>
             <div id="background-pattern"></div>
-            <Modal/>
+            {(currentStatusApp === "none") ? <Modal/> : null}
             {
                 (respProduct.status) 
                 ?<Routes>
