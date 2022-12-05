@@ -6,7 +6,7 @@ $padding-lr-list: 0.8rem;
 
 .list-item {
     background-color: white;
-    border: 1px black solid;
+    border-bottom: 1px black solid;
     display: grid;
     grid-template-columns:2fr 2fr 1fr 4em;
     margin: 0 4em;

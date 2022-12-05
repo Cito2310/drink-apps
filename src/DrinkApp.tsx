@@ -11,6 +11,7 @@ import "./styles/background-pattern.scss"
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
 import { LayoutProducts } from "./layout/LayoutProducts";
+import { Modal } from "./Modal_Component/Modal";
 
 
 export const DrinkApp = () => {
@@ -19,7 +20,7 @@ export const DrinkApp = () => {
   
     useEffect(() => {
         const getProduct = async() => {
-            const { data } = await axios.get("https://node-ts-load-drink.onrender.com/api/product");
+            const { data } = await axios.get("https://load-drink-api.onrender.com/api/product");
             return data;
         }
         getProduct()
@@ -31,6 +32,7 @@ export const DrinkApp = () => {
     return (
         <>
             <div id="background-pattern"></div>
+            <Modal/>
             {
                 (respProduct.status) 
                 ?<Routes>
