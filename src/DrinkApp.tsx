@@ -13,7 +13,9 @@ import { LayoutProducts } from "./layout/LayoutProducts";
 
 import { contextStatusApp } from './ProviderStatusApp/ProviderStatusApp';
 
-import { Modal } from "./Modal_Component/Modal";
+import { ModalCreateProduct } from './Modal_Component/ModalCreateProduct';
+import { ModalEditProduct } from './Modal_Component/ModalEditProduct';
+import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
 
@@ -35,7 +37,9 @@ export const DrinkApp = () => {
     return (
         <>
             <div id="background-pattern"></div>
-            {(currentStatusApp === "none") ? <Modal/> : null}
+            {(currentStatusApp === "delete") ? <ModalDeleteProduct/> : null}
+            {(currentStatusApp === "edit") ? <ModalEditProduct/> : null}
+            {(currentStatusApp === "create") ? <ModalCreateProduct/> : null}
             {
                 (respProduct.status) 
                 ?<Routes>

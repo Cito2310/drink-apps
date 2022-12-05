@@ -7,13 +7,13 @@ export interface IStatusApp {
     setCurrentStatusApp : React.Dispatch<React.SetStateAction<TStatusValid>>;
 }
 
-type TStatusValid = "none" | "delete" | "edit"; 
+type TStatusValid = "none" | "delete" | "edit" | "create"; 
 
 export const contextStatusApp = createContext<IStatusApp>({} as IStatusApp)
 
 export const ProviderStatusApp = ({children}: props) => {
     const [currentStatusApp, setCurrentStatusApp] = useState<TStatusValid>("none")
-    
+
     return (
         <contextStatusApp.Provider value={{currentStatusApp, setCurrentStatusApp}}>
             {children}
