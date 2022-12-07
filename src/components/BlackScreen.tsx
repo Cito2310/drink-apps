@@ -6,7 +6,7 @@ export const BlackScreen = () => {
         document.body.style.overflow = "hidden"
     
         return () => {
-            document.body.style.overflow = "none"
+            document.body.style.overflow = "visible"
         }
     }, [])
     
