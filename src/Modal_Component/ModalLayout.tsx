@@ -1,6 +1,8 @@
 import { BlackScreen } from '../components/BlackScreen';
 
 import "./modal.scss"
+import "./form-input.scss"
+
 
 interface props {
     children: JSX.Element | JSX.Element[]

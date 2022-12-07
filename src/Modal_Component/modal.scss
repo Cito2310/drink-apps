@@ -2,19 +2,25 @@
     background-color: white;
     border-radius: 0.6rem;
     left: 50%;
-    padding: 1em;
-    position: absolute;
+    padding: 1.6em;
+    position: fixed;
     top: 50%;
     transform: translate(-50%,-50%);
     z-index: 3;
+    width: 20rem;
+    @media (max-width: 26rem) {
+        width: calc(100vw - 3.2em);
+    }
+
 
     p, button { all:unset }
 
     #modal-top {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
 
         button {
+            margin: auto 0;
             $time-to-animation: 0.3s;
             border-radius: 50%;
             color: rgb(56, 56, 56);
@@ -34,19 +40,44 @@
             }
         }
 
+        h3 {
+            margin: auto 0;
+            font-weight: 400;
+            color: #303030;
+        }
+
     }
 
     #modal-body {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         margin: 0.2rem 0 0.8rem;
+        flex-direction: column;
     }
 
     #modal-bottom {
         display: flex;
         justify-content: flex-end;
 
+        p {
+            margin: auto 0;
+
+            &.advert-error { color: #ff0033 }
+            &.advert-loading { color: rgb(80, 80, 80) }
+            &.advert-ready { color: rgb(21, 172, 21) }
+
+            .spinner {
+                font-size: 1.2em;
+                animation: rotation-360 2s infinite linear;
+                @keyframes rotation-360 {
+                    0% {transform: rotate(0deg);}
+                    100% {transform: rotate(360deg);}
+                }
+            }
+        }
+
         button {
+            margin-left: 0.6rem;
             $time-to-animation: 0.3s;
             background-color: #195de6;
             border-radius: 0.44rem;
