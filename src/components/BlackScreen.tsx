@@ -1,5 +1,6 @@
-import "../styles/black-screen.scss"
 import { useEffect } from 'react';
+
+import "../styles/black-screen.scss"
 
 export const BlackScreen = () => {
     useEffect(() => {
