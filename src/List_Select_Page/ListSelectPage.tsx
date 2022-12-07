@@ -10,7 +10,7 @@ interface props {
 export const ListSelectPage = ({ products }: props) => {
     return (
         <section id='list-section'>
-            {products.map( product => <ListItem product={product} />)}
+            {products.map( product => <ListItem key={product._id} product={product} />)}
         </section>
     )
 }
