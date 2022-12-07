@@ -1,10 +1,11 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import { IProduct } from '../interfaces/IProduct';
 
 import "./cards.scss"
+import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
 
 interface props {
     product: IProduct
@@ -12,7 +13,9 @@ interface props {
 
 export const Cards = ( { product }: props ) => {
     const { brand, flavor, location, size, category } = product;
-    // AMOUNT CONTROLLER
+
+    
+    // CONTROLLERS - CHANGE AMOUNT
     const [amount, setAmount] = useState<number>(product.amount);
     const [timerAmount, setTimerAmount] = useState<string | boolean>("");
     
@@ -34,6 +37,13 @@ export const Cards = ( { product }: props ) => {
         if (timerAmount === true) {axios.put(`https://node-ts-load-drink.onrender.com/api/product/amount/${product._id}`, {newAmount: amount})}
     }, [timerAmount])
 
+
+    // CONTROLLERS - EDIT AND REMOVE
+    const { setCurrentStatusApp, setProductSelected } = useContext(contextStatusApp)
+    const onEdit = (): void => { setProductSelected(product); setCurrentStatusApp('edit') }
+    const onRemove = (): void => { setProductSelected(product); setCurrentStatusApp('delete') }
+
+
     // RENDER
     return (
         <div className='card-container'>
@@ -48,8 +58,8 @@ export const Cards = ( { product }: props ) => {
                         <p className='text-location-card'>UBICACION &#35;{location}</p>
                     </div>
                     <div className='container-button-edit-delete'>
-                        <NavLink to={`../modify-product/${"hola"}`}><i className="fa-solid fa-pen"/></NavLink>
-                        <NavLink to={"www.google.com"}><i className="fa-solid fa-trash"/></NavLink>
+                        <button onClick={onEdit}><i className="fa-solid fa-pen"/></button>
+                        <button onClick={onRemove}><i className="fa-solid fa-trash"/></button>
                     </div>
                 </div>
 
