@@ -62,7 +62,7 @@
         align-self:flex-end;
         display: flex;
         
-        a {
+        button {
             aspect-ratio: 1;
             background-color: colors.$card-background-btn; 
             border-radius: 5px;
@@ -76,11 +76,11 @@
             
             i {margin: auto;}
         }
-        a:hover {
+        button:hover {
             background-color: colors.$card-background-btn-hover;
             color: colors.$card-color-btn-hover;
         }
-        a:active {
+        button:active {
             background-color: colors.$card-background-btn-active;
             color: colors.$card-color-btn-active;
         }
