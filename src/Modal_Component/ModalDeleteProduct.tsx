@@ -3,11 +3,18 @@ import { useContext } from 'react';
 import { ModalLayout } from './ModalLayout';
 
 import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import axios from 'axios';
 
 export const ModalDeleteProduct = () => {
     // CONTROLLER STATUS APP
     const { setCurrentStatusApp, productSelected } = useContext(contextStatusApp);
     const onStatusNone = () => {setCurrentStatusApp("none")};
+
+    // CONTROLLER DELETE PRODUCT
+    const onDelete = async() => {
+        await axios.delete(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`)
+        onStatusNone()
+    }
 
     return (
         <ModalLayout>
@@ -24,8 +31,8 @@ export const ModalDeleteProduct = () => {
             </div>
 
             <div id="modal-bottom">
-                <button className='btn-modal btn-color-secondary'>No</button>
-                <button className='btn-modal btn-color-primary'>Si</button>
+                <button className='btn-modal btn-color-secondary' onClick={onStatusNone}>No</button>
+                <button className='btn-modal btn-color-primary' onClick={onDelete}>Si</button>
             </div>
         </ModalLayout>
     )
