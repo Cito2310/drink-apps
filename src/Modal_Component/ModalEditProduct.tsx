@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 
+import { IReqHttp } from '../interfaces/IReqHttp';
+
 import { ModalLayout } from './ModalLayout';
 import { FormInputText } from './components/FormInputText';
 import { FormInputNumber } from './components/FormInputNumber';
@@ -8,6 +10,7 @@ import { FormInputNumber } from './components/FormInputNumber';
 import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
 
 import { useForm } from './helpers/useForm';
+import { checkInputsProduct } from './helpers/checkInputs';
 
 
 export const ModalEditProduct = () => {
@@ -35,20 +38,18 @@ export const ModalEditProduct = () => {
     })
 
     // CONTROLLER FORM REQ HTTP
-    interface IReqHttp {
-        status: "error" | "loading" | "none" | "ready",
-        msg: string 
-    }
     const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "Ha ocurrido un error " })
 
     // CONTROLLER SUBMIT
     const onSubmitEdit = async(event: React.FormEvent) => {
         event.preventDefault();
         try {
-            setReqHttp({ status:"loading", msg:"" });
-            await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
-            setReqHttp({ status:"ready", msg:"" });
-            setTimeout(onStatusNone, 300)
+            if (checkInputsProduct( formState, setReqHttp )) {
+                setReqHttp({ status:"loading", msg:"" });
+                await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
+                setReqHttp({ status:"ready", msg:"" });
+                setTimeout(onStatusNone, 300)
+            }
         } catch (error) {
             setReqHttp({ status:"error", msg:"Ha ocurrido un error"})
             // console.log(error)
