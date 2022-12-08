@@ -52,7 +52,6 @@ export const ModalEditProduct = () => {
             }
         } catch (error) {
             setReqHttp({ status:"error", msg:"Ha ocurrido un error"})
-            // console.log(error)
         }
     }
 
@@ -111,7 +110,7 @@ export const ModalEditProduct = () => {
                     {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg} <i className="fa-solid fa-exclamation"/></p> : null}
                     {reqHttp.status === "loading" ? <p className='advert-loading'><i className="spinner fa-solid fa-spinner"/></p> : null}
                     {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null}
-                    <input type="submit" value="Editar"/>
+                    <input className='btn-modal btn-color-primary' type="submit" value="Editar"/>
                 </div>
             </form>
         </ModalLayout>

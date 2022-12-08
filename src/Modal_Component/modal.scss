@@ -13,13 +13,14 @@
     }
 
 
-    p, button { all:unset }
+    p { all:unset }
 
     #modal-top {
         display: flex;
         justify-content: space-between;
 
         button {
+            all:unset;
             margin: auto 0;
             $time-to-animation: 0.3s;
             border-radius: 50%;
