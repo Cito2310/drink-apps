@@ -1,11 +1,14 @@
 import { useContext, useState } from 'react';
+import axios from 'axios';
 
 import { ModalLayout } from './ModalLayout';
-
-import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
-import { useForm } from './helpers/useForm';
 import { FormInputText } from './components/FormInputText';
 import { FormInputNumber } from './components/FormInputNumber';
+
+import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+
+import { useForm } from './helpers/useForm';
+
 
 export const ModalEditProduct = () => {
     // CONTROLLER STATUS APP
@@ -24,11 +27,11 @@ export const ModalEditProduct = () => {
         onInputChange,
         onResetForm,
     } = useForm({
-        brand: "",
-        category: "",
-        flavor: "",
-        size: "",
-        location: 0,
+        brand: productSelected.brand,
+        category: productSelected.category,
+        flavor: productSelected.flavor,
+        size: productSelected.size,
+        location: productSelected.location,
     })
 
     // CONTROLLER FORM REQ HTTP
@@ -36,7 +39,21 @@ export const ModalEditProduct = () => {
         status: "error" | "loading" | "none" | "ready",
         msg: string 
     }
-    const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "ready" , msg: "Ha ocurrido un error " })
+    const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "Ha ocurrido un error " })
+
+    // CONTROLLER SUBMIT
+    const onSubmitEdit = async(event: React.FormEvent) => {
+        event.preventDefault();
+        try {
+            setReqHttp({ status:"loading", msg:"" });
+            await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
+            setReqHttp({ status:"ready", msg:"" });
+            setTimeout(onStatusNone, 300)
+        } catch (error) {
+            setReqHttp({ status:"error", msg:"Ha ocurrido un error"})
+            // console.log(error)
+        }
+    }
 
 
     // RENDER
@@ -50,7 +67,7 @@ export const ModalEditProduct = () => {
                 </button>
             </div>
 
-            <form>
+            <form onSubmit={onSubmitEdit}>
                 <div id="modal-body">
                     <FormInputText
                         label='Marca'
@@ -90,7 +107,7 @@ export const ModalEditProduct = () => {
                 </div>
 
                 <div id="modal-bottom">
-                    {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg}<i className="fa-solid fa-exclamation"/></p> : null}
+                    {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg} <i className="fa-solid fa-exclamation"/></p> : null}
                     {reqHttp.status === "loading" ? <p className='advert-loading'><i className="spinner fa-solid fa-spinner"/></p> : null}
                     {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null}
                     <input type="submit" value="Editar"/>
