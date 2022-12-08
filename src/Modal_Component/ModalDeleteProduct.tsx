@@ -1,19 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import axios from 'axios';
+
+import { IReqHttp } from '../interfaces/IReqHttp';
 
 import { ModalLayout } from './ModalLayout';
 
 import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
-import axios from 'axios';
+
+
 
 export const ModalDeleteProduct = () => {
     // CONTROLLER STATUS APP
     const { setCurrentStatusApp, productSelected } = useContext(contextStatusApp);
     const onStatusNone = () => {setCurrentStatusApp("none")};
 
+    // CONTROLLER FORM REQ HTTP
+    const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "" })
+
     // CONTROLLER DELETE PRODUCT
     const onDelete = async() => {
-        await axios.delete(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`)
-        onStatusNone()
+        try {
+            setReqHttp({status: "loading", msg: ""})
+            await axios.delete(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`)
+            onStatusNone()
+
+        } catch (error) {
+            setReqHttp({status: "error", msg: ""})
+        }
     }
 
     return (
@@ -32,7 +45,13 @@ export const ModalDeleteProduct = () => {
 
             <div id="modal-bottom">
                 <button className='btn-modal btn-color-secondary' onClick={onStatusNone}>No</button>
-                <button className='btn-modal btn-color-primary' onClick={onDelete}>Si</button>
+                <button className='btn-modal btn-color-primary' onClick={onDelete}>
+                    {
+                        (reqHttp.status === "none") ? "Si"
+                        : (reqHttp.status === "error") ? <p className='advert-error' style={{color:"#fff"}}><i className="fa-solid fa-xmark"/> Error</p>
+                        : (reqHttp.status === "loading") ? <p className='advert-loading' style={{color:"#fff"}}><i className="spinner fa-solid fa-spinner"/></p> : null
+                    }
+                </button>
             </div>
         </ModalLayout>
     )
