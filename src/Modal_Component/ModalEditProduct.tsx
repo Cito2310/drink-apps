@@ -5,6 +5,7 @@ import { ModalLayout } from './ModalLayout';
 import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
 import { useForm } from './helpers/useForm';
 import { FormInputText } from './components/FormInputText';
+import { FormInputNumber } from './components/FormInputNumber';
 
 export const ModalEditProduct = () => {
     // CONTROLLER STATUS APP
@@ -27,7 +28,7 @@ export const ModalEditProduct = () => {
         category: "",
         flavor: "",
         size: "",
-        location: "",
+        location: 0,
     })
 
     // CONTROLLER FORM REQ HTTP
@@ -49,51 +50,52 @@ export const ModalEditProduct = () => {
                 </button>
             </div>
 
-            <div id="modal-body">
+            <form>
+                <div id="modal-body">
+                    <FormInputText
+                        label='Marca'
+                        nameInput="brand"
+                        onInputChange={onInputChange}
+                        value={brand}
+                    />
 
-                <FormInputText
-                    label='Marca'
-                    name="brand"
-                    onInputChange={onInputChange}
-                    value={brand}
-                />
+                    <FormInputText
+                        label='Categoria'
+                        nameInput="category"
+                        onInputChange={onInputChange}
+                        value={category}
+                    />
 
-                <FormInputText
-                    label='Categoria'
-                    name="category"
-                    onInputChange={onInputChange}
-                    value={category}
-                />
+                    <FormInputText
+                        label='Sabor'
+                        nameInput="flavor"
+                        onInputChange={onInputChange}
+                        value={flavor}
+                    />
 
-                <FormInputText
-                    label='Sabor'
-                    name="flavor"
-                    onInputChange={onInputChange}
-                    value={flavor}
-                />
+                    <FormInputText
+                        label='Tamaño'
+                        nameInput="size"
+                        onInputChange={onInputChange}
+                        value={size}
+                    />
 
-                <FormInputText
-                    label='Tamaño'
-                    name="size"
-                    onInputChange={onInputChange}
-                    value={size}
-                />
+                    <FormInputNumber
+                        label='Ubicacion'
+                        nameInput="location"
+                        onInputChange={onInputChange}
+                        value={location}
+                        min={0} max={30}
+                    />
+                </div>
 
-                <FormInputText
-                    label='Ubicacion'
-                    name="location"
-                    onInputChange={onInputChange}
-                    value={location}
-                />
-
-            </div>
-
-            <div id="modal-bottom">
-                {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg}<i className="fa-solid fa-exclamation"/></p> : null}
-                {reqHttp.status === "loading" ? <p className='advert-loading'><i className="spinner fa-solid fa-spinner"/></p> : null}
-                {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null}
-                <button>Aceptar</button>
-            </div>
+                <div id="modal-bottom">
+                    {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg}<i className="fa-solid fa-exclamation"/></p> : null}
+                    {reqHttp.status === "loading" ? <p className='advert-loading'><i className="spinner fa-solid fa-spinner"/></p> : null}
+                    {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null}
+                    <input type="submit" value="Editar"/>
+                </div>
+            </form>
         </ModalLayout>
     )
 }
