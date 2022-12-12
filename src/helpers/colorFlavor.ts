@@ -5,6 +5,7 @@ export const colorFlavor = ( flavor: string ) => {
         case "lima": return "#448617"
         case "pomelo": return "#e7cf4d"
         case "cola": return "#291002"
+        case "guarana": return "#0c1e03"
     
         default: return "#000"
     }
