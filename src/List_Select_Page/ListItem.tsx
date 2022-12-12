@@ -1,5 +1,6 @@
 import { IProduct } from '../interfaces/IProduct';
 import "./list-item.scss"
+import { colorFlavor } from '../helpers/colorFlavor';
 
 interface props {
     product: IProduct;
@@ -11,7 +12,7 @@ export const ListItem = ({ product } : props) => {
     return (
         <div className='list-item'>
             <p className='list-text list-brand'>{brand}</p>
-            <p className='list-text list-flavor'>{flavor+" "+size}</p>
+            <p className='list-text list-flavor' style={{color: colorFlavor(flavor)}}>{flavor+" "+size}</p>
             <p className='list-text list-category'>{category}</p>
             <div>
                 <p className='list-amount'>{amount}</p>

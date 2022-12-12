@@ -6,6 +6,7 @@ import { IProduct } from '../interfaces/IProduct';
 
 import "./cards.scss"
 import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import { colorFlavor } from '../helpers/colorFlavor';
 
 interface props {
     product: IProduct
@@ -50,7 +51,7 @@ export const Cards = ( { product }: props ) => {
             <div className='container-description'>
 
                 <p className='text-brand-card'>{brand}</p>
-                <p className='text-flavor-card'><b>SABOR:</b> {flavor + " " + size} </p>
+                <p className='text-flavor-card' style={{color: colorFlavor(flavor)}}><b>SABOR:</b> {flavor + " " + size} </p>
 
                 <div className='container-button-and-category-location'>
                     <div className='container-category-location'>
