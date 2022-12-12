@@ -45,7 +45,7 @@ export const ModalDeleteProduct = () => {
 
             <div id="modal-bottom">
                 <button className='btn-modal btn-color-secondary' onClick={onStatusNone}>No</button>
-                <button className='btn-modal btn-color-primary' onClick={onDelete}>
+                <button className='btn-modal btn-color-advert' onClick={onDelete}>
                     {
                         (reqHttp.status === "none") ? "Si"
                         : (reqHttp.status === "error") ? <p className='advert-error' style={{color:"#fff"}}><i className="fa-solid fa-xmark"/> Error</p>
