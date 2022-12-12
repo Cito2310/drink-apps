@@ -30,15 +30,6 @@ export const ProviderRespProducts = ({children}: props) => {
             .catch(console.error)
     }, [])
     
-    // // controller update and order products
-    // const [updateProduct, setUpdateProduct] = useState(0);
-    // useEffect(() => {
-    //     if (updateProduct !== 0) {
-    //         setRespProduct({ status: true, data: getOrderProduct(respProduct.data) })
-    //     }
-    // }, [0])
-
-    // const onOrderProducts = () => {setUpdateProduct(updateProduct + 1)}
 
     // controllers products
     const onAddProductsArray = ( productAdded: IProduct ) => {
@@ -58,7 +49,8 @@ export const ProviderRespProducts = ({children}: props) => {
             break;
           };
         }
-        setRespProduct({status: true, data: productArr.splice(indexProduct, 1)});
+        productArr.splice(indexProduct, 1)
+        setRespProduct({status: true, data: productArr});
     }
 
     const onModifyProductsArray = ( productModify: IProduct ) => {

@@ -8,6 +8,7 @@ import { FormInputText } from './components/FormInputText';
 import { FormInputNumber } from './components/FormInputNumber';
 
 import { contextStatusApp } from '../Providers/ProviderStatusApp';
+import { contextRespProducts } from '../Providers/ProviderProducts';
 
 import { useForm } from './helpers/useForm';
 import { checkInputsProduct } from './helpers/checkInputs';
@@ -40,13 +41,16 @@ export const ModalEditProduct = () => {
     // CONTROLLER FORM REQ HTTP
     const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "Ha ocurrido un error " })
 
-    // CONTROLLER SUBMIT
+    // CONTROLLER SUBMIT AND PRODUCT
+    const { onModifyProductsArray } = useContext(contextRespProducts)
+
     const onSubmitEdit = async(event: React.FormEvent) => {
         event.preventDefault();
         try {
             if (checkInputsProduct( formState, setReqHttp )) {
                 setReqHttp({ status:"loading", msg:"" });
-                await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
+                const { data } = await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
+                onModifyProductsArray(data)
                 setReqHttp({ status:"ready", msg:"" });
                 setTimeout(onStatusNone, 300)
             }

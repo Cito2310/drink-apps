@@ -6,6 +6,7 @@ import { IReqHttp } from '../interfaces/IReqHttp';
 import { ModalLayout } from './ModalLayout';
 
 import { contextStatusApp } from '../Providers/ProviderStatusApp';
+import { contextRespProducts } from '../Providers/ProviderProducts';
 
 
 
@@ -18,10 +19,13 @@ export const ModalDeleteProduct = () => {
     const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "" })
 
     // CONTROLLER DELETE PRODUCT
+    const { onDeleteProductsArray } = useContext(contextRespProducts)
+
     const onDelete = async() => {
         try {
             setReqHttp({status: "loading", msg: ""})
             await axios.delete(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`)
+            onDeleteProductsArray(productSelected)
             onStatusNone()
 
         } catch (error) {
