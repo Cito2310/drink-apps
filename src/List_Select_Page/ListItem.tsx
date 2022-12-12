@@ -1,4 +1,6 @@
 import { IProduct } from '../interfaces/IProduct';
+import "./list-item.scss"
+
 interface props {
     product: IProduct;
 }
