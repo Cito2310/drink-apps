@@ -11,14 +11,14 @@ import "./styles/background-pattern.scss"
 
 import { LayoutProducts } from "./layout/LayoutProducts";
 
-import { contextStatusApp } from './ProviderStatusApp/ProviderStatusApp';
+import { contextStatusApp } from './Providers/ProviderStatusApp';
 
 import { ModalCreateProduct } from './Modal_Component/ModalCreateProduct';
 import { ModalEditProduct } from './Modal_Component/ModalEditProduct';
 import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
-import { contextRespProducts } from './ProviderStatusApp/ProviderProducts';
+import { contextRespProducts } from './Providers/ProviderProducts';
 
 export const DrinkApp = () => {
     const { currentStatusApp } = useContext(contextStatusApp);

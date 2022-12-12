@@ -5,7 +5,7 @@ import axios from 'axios';
 import { IProduct } from '../interfaces/IProduct';
 
 import "./cards.scss"
-import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import { contextStatusApp } from '../Providers/ProviderStatusApp';
 import { colorFlavor } from '../helpers/colorFlavor';
 
 interface props {

@@ -5,7 +5,7 @@ import { IReqHttp } from '../interfaces/IReqHttp';
 
 import { ModalLayout } from './ModalLayout';
 
-import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import { contextStatusApp } from '../Providers/ProviderStatusApp';
 
 import { checkInputsProduct } from './helpers/checkInputs';
 import { useForm } from './helpers/useForm';

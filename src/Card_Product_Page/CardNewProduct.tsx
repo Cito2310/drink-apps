@@ -1,7 +1,7 @@
 import "./cards.scss"
 import "./card-new-product.scss"
 import { useContext } from 'react';
-import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import { contextStatusApp } from '../Providers/ProviderStatusApp';
 
 
 export const CardNewProduct = () => {

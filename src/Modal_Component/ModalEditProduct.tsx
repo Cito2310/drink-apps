@@ -7,7 +7,7 @@ import { ModalLayout } from './ModalLayout';
 import { FormInputText } from './components/FormInputText';
 import { FormInputNumber } from './components/FormInputNumber';
 
-import { contextStatusApp } from '../ProviderStatusApp/ProviderStatusApp';
+import { contextStatusApp } from '../Providers/ProviderStatusApp';
 
 import { useForm } from './helpers/useForm';
 import { checkInputsProduct } from './helpers/checkInputs';

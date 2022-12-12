@@ -15,7 +15,7 @@ type TStatusValid = "none" | "delete" | "edit" | "create";
 export const contextStatusApp = createContext<IStatusApp>({} as IStatusApp)
 
 export const ProviderStatusApp = ({children}: props) => {
-    const [currentStatusApp, setCurrentStatusApp] = useState<TStatusValid>("create");
+    const [currentStatusApp, setCurrentStatusApp] = useState<TStatusValid>("none");
     const [productSelected, setProductSelected] = useState<IProduct>({} as IProduct)
 
     return (
