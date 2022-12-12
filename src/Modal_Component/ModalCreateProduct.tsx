@@ -62,7 +62,7 @@ export const ModalCreateProduct = () => {
     return (
         <ModalLayout>
             <div id="modal-top">
-                <h3>Editar Producto</h3>
+                <h3>Crear Producto</h3>
 
                 <button onClick={onStatusNone}>
                     <i className="fa-solid fa-xmark"/>
