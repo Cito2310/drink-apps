@@ -3,14 +3,20 @@ import "./list-item.scss"
 import { colorFlavor } from '../helpers/colorFlavor';
 import { useContext } from 'react';
 import { contextRespProducts } from '../Providers/ProviderProducts';
+import axios from 'axios';
 
 interface props {
     product: IProduct;
 }
 
 export const ListItem = ({ product } : props) => {
-    const { onChangeAmountProductArray } = useContext(contextRespProducts)
-    const { amount, brand, category, flavor, size } = product
+    const { onChangeAmountProductArray } = useContext(contextRespProducts);
+    const { amount, brand, category, flavor, size } = product;
+
+    const amountZero = () => {
+        onChangeAmountProductArray(product, 0)
+        axios.put(`https://node-ts-load-drink.onrender.com/api/product/amount/${product._id}`, {newAmount: 0})
+    }
 
     return (
         <div className='list-item'>
@@ -21,7 +27,7 @@ export const ListItem = ({ product } : props) => {
                 <p className='list-amount'>{amount}</p>
                 <button 
                     className='list-btn-amount' 
-                    onClick={()=>{onChangeAmountProductArray(product, 0)}}
+                    onClick={amountZero}
                 >
                     <i className="fa-solid fa-xmark"/>
                 </button>
