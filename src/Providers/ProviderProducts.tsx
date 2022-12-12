@@ -13,6 +13,7 @@ export interface IProductProvider {
     onAddProductsArray: (product: IProduct) => void;
     onDeleteProductsArray: (product: IProduct) => void;
     onModifyProductsArray: (product: IProduct) => void;
+    onChangeAmountProductArray: (productModify: IProduct, newAmount: number) => void
 }
 
 export const contextRespProducts = createContext<IProductProvider>({} as IProductProvider)
@@ -69,10 +70,27 @@ export const ProviderRespProducts = ({children}: props) => {
         setRespProduct({status: true, data: getOrderProduct( productArr )});
     }
 
+    const onChangeAmountProductArray = ( productModify: IProduct, newAmount: number ) => {
+        let productArr = respProduct.data;
+        productModify.amount = newAmount;
+
+        let indexProduct = 0;
+        for (const [index, product] of productArr.entries()) {
+          if (product._id === productModify._id) { 
+            indexProduct = index; 
+            break;
+          };
+        }
+        productArr.splice(indexProduct, 1)
+
+        productArr.push( productModify );
+        setRespProduct({status: true, data: getOrderProduct( productArr )});
+    }
+
 
     // R E N D E R   P R O V I D E R
     return (
-        <contextRespProducts.Provider value={{respProduct, onAddProductsArray, onDeleteProductsArray, onModifyProductsArray}}>
+        <contextRespProducts.Provider value={{respProduct, onAddProductsArray, onDeleteProductsArray, onModifyProductsArray, onChangeAmountProductArray}}>
             {children}
         </contextRespProducts.Provider>
     )

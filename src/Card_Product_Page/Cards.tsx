@@ -7,6 +7,7 @@ import { IProduct } from '../interfaces/IProduct';
 import "./cards.scss"
 import { contextStatusApp } from '../Providers/ProviderStatusApp';
 import { colorFlavor } from '../helpers/colorFlavor';
+import { contextRespProducts } from '../Providers/ProviderProducts';
 
 interface props {
     product: IProduct
@@ -19,6 +20,7 @@ export const Cards = ( { product }: props ) => {
     // CONTROLLERS - CHANGE AMOUNT
     const [amount, setAmount] = useState<number>(product.amount);
     const [timerAmount, setTimerAmount] = useState<string | boolean>("");
+    const { onChangeAmountProductArray } = useContext(contextRespProducts)
     
     const checkTimer = (timerAmount === true || timerAmount === "");
     const changePlusAmount = () => {
@@ -34,8 +36,11 @@ export const Cards = ( { product }: props ) => {
     }}
 
     useLayoutEffect(() => {
-        if (timerAmount === false) {setTimeout(()=>{setTimerAmount(true)},1000)}
-        if (timerAmount === true) {axios.put(`https://node-ts-load-drink.onrender.com/api/product/amount/${product._id}`, {newAmount: amount})}
+        if (timerAmount === false) {setTimeout(()=>{setTimerAmount(true)}, 800)}
+        if (timerAmount === true) {
+            axios.put(`https://node-ts-load-drink.onrender.com/api/product/amount/${product._id}`, {newAmount: amount});
+            onChangeAmountProductArray( product, amount )
+        }
     }, [timerAmount])
 
 
