@@ -88,7 +88,7 @@ export const checkInputsProduct = ( product: IProductInput, setReqHttp: React.Di
 
     // LOCATION CHECK
         // location has more than two characters
-        if ( !location ) {
+        if ( !location && location != 0 ) {
             setReqHttp({ status: "error", msg: "La ubicacion es requerido" })
             return false
         }
