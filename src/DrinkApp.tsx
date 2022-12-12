@@ -18,22 +18,13 @@ import { ModalEditProduct } from './Modal_Component/ModalEditProduct';
 import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
+import { contextRespProducts } from './ProviderStatusApp/ProviderProducts';
 
 export const DrinkApp = () => {
     const { currentStatusApp } = useContext(contextStatusApp);
-    const [respProduct, setRespProduct] = useState<IStateRespProduct>({status: false, data: []})
-  
-    useEffect(() => {
-        const getProduct = async() => {
-            const { data } = await axios.get("https://load-drink-api.onrender.com/api/product");
-            return data;
-        }
-        getProduct()
-            .then( data => {  setRespProduct({ status: true, data })   })
-            .catch(console.error)
-  }, [])
-    
+    const { respProduct } = useContext(contextRespProducts);
 
+    
     return (
         <>
             <div id="background-pattern"></div>
