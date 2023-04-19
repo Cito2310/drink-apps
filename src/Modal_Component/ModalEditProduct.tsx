@@ -49,7 +49,7 @@ export const ModalEditProduct = () => {
         try {
             if (checkInputsProduct( formState, setReqHttp )) {
                 setReqHttp({ status:"loading", msg:"" });
-                const { data } = await axios.put(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`, formState);
+                const { data } = await axios.put(`https://node-ts-load-drink.onrender.com/api/product/${productSelected._id}`, formState);
                 onModifyProductsArray(data)
                 setReqHttp({ status:"ready", msg:"" });
                 setTimeout(onStatusNone, 300)

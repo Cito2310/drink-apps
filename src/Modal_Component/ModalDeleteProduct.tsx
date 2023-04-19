@@ -24,7 +24,7 @@ export const ModalDeleteProduct = () => {
     const onDelete = async() => {
         try {
             setReqHttp({status: "loading", msg: ""})
-            await axios.delete(`https://load-drink-api.onrender.com/api/product/${productSelected._id}`)
+            await axios.delete(`https://node-ts-load-drink.onrender.com/api/product/${productSelected._id}`)
             onDeleteProductsArray(productSelected)
             onStatusNone()
 

@@ -51,7 +51,7 @@ export const ModalCreateProduct = () => {
         try {
             if (checkInputsProduct( formState, setReqHttp )) {
                 setReqHttp({ status:"loading", msg:"" });
-                const { data } = await axios.post(`https://load-drink-api.onrender.com/api/product/`, formState);
+                const { data } = await axios.post(`https://node-ts-load-drink.onrender.com/api/product/`, formState);
                 onAddProductsArray(data)
                 setReqHttp({ status:"ready", msg:"" });
                 setTimeout(onStatusNone, 300)
