@@ -23,7 +23,7 @@ export const ProviderRespProducts = ({children}: props) => {
     const [respProduct, setRespProduct] = useState<IStateRespProduct>({status: false, data: []});
     useEffect(() => {
         const getProduct = async() => {
-            const { data } = await axios.get("https://load-drink-api.onrender.com/api/product");
+            const { data } = await axios.get("https://node-ts-load-drink-api.onrender.com/api/product");
             return data;
         }
         getProduct()
