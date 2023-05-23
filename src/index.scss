@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+@layer utilities {
+    .transition-base {
+        transition: all 100ms linear
+    }
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    margin: auto;
+    width: 3em;
+    
+    .path {
+      animation: dash 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      stroke: #909090;
+    }
+}
+
+@keyframes rotate {
+100% { transform: rotate(360deg) }
+}
+
+@keyframes dash {
+0% { stroke-dasharray: 1, 150 ; stroke-dashoffset: 0 }
+50% { stroke-dasharray: 90, 150 ; stroke-dashoffset: -35 }
+100% { stroke-dasharray: 90, 150 ;stroke-dashoffset: -124 }
+}

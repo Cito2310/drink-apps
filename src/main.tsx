@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { HashRouter } from "react-router-dom"
 
+import "./index.scss"
+
 import { DrinkApp } from './DrinkApp'
 import { store } from './store/store'
 import { Provider } from 'react-redux'

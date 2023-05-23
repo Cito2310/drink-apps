@@ -1,6 +1,5 @@
 import { fetchApi } from "../../helpers/fetchApi";
-import { Product } from "../../types/product";
-import { FormProductData } from "../../types/productData";
+import { FormProductData } from "../../types/formProductdata";
 import { AppDispatch, RootState } from "../store";
 import { createProduct, initLoading, setProducts, stopLoading, updateProduct } from "./";
 

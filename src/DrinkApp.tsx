@@ -5,9 +5,6 @@ import { CardProductPage } from "./Card_Product_Page/CardProductPage"
 import { ListSelectPage } from './List_Select_Page/ListSelectPage';
 import { LoadingScreen } from "./components/LoadingScreen";
 
-import "./styles/config.scss"
-import "./styles/background-pattern.scss"
-
 import { LayoutProducts } from "./layout/LayoutProducts";
 
 
@@ -30,10 +27,6 @@ export const DrinkApp = () => {
 
     return (
         <>
-            { current === "create" && <ModalCreateProduct /> }
-            { current === "delete" && <ModalDeleteProduct /> }
-            { current === "update" && <ModalUpdateProduct /> }
-
             {
                 ( status.isLoading )
                 ? <LoadingScreen/>
@@ -52,6 +45,10 @@ export const DrinkApp = () => {
                     </LayoutProducts>
                 )
             } 
+
+            { current === "create" && <ModalCreateProduct /> }
+            { current === "delete" && <ModalDeleteProduct /> }
+            { current === "update" && <ModalUpdateProduct /> }
         </>
     )
 }
