@@ -1,6 +1,4 @@
 import { IProduct } from '../interfaces/IProduct';
-import "./list-item.scss"
-import { colorFlavor } from '../helpers/colorFlavor';
 import { useAppDispatch } from '../store';
 import { startUpdateAmountById } from '../store/product';
 
@@ -17,15 +15,24 @@ export const ListItem = ({ product } : props) => {
     }
 
     return (
-        <div className='list-item'>
-            <p className='list-text list-brand'>{brand}</p>
-            <p className='list-text list-flavor' style={{color: colorFlavor(flavor)}}>{flavor+" "+size}</p>
-            <p className='list-text list-category'>{category}</p>
-            <div>
-                <p className='list-amount'>{amount}</p>
+        <div className='
+            bg-card_bg
+            grid grid-cols-[2fr_2fr_1fr_4em]
+            rounded-md
+            items-center
+            uppercase
+            px-6
+            shadow-md
+        '>
+            <p>{ brand }</p>
+            <p>{ `${ flavor } ${ size }` }</p>
+            <p>{ category }</p>
+
+            <div className='items-center flex justify-between'>
+                <p className='text-xl'>{ amount }</p>
                 <button 
-                    className='list-btn-amount' 
-                    onClick={onAmountZero}
+                    className='text-3xl transition-base text-card_btn brightness-90 hover:brightness-75' 
+                    onClick={ onAmountZero }
                 >
                     <i className="fa-solid fa-xmark"/>
                 </button>

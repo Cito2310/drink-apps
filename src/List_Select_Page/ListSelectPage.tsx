@@ -1,6 +1,5 @@
 import { IProduct } from '../interfaces/IProduct';
 
-import "./list-section.scss"
 import { ListItem } from './ListItem';
 
 interface props {
@@ -9,7 +8,7 @@ interface props {
 
 export const ListSelectPage = ({ products }: props) => {
     return (
-        <section id='list-section'>
+        <section className='py-6 px-14 bg-backgroundColor h-screen flex flex-col gap-2'>
             {products.map( product => (product.amount !== 0) ? <ListItem key={product._id} product={product} /> : null )}
         </section>
     )
