@@ -7,9 +7,9 @@ interface props {
 export const LayoutProducts = ({ children }: props) => {
     return (
         <>
+            { children }
             <BtnToggleSidebar/>
             <SideBar/>
-            { children }
         </>
     )
 }

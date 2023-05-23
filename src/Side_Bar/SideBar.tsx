@@ -20,7 +20,7 @@ export const SideBar = () => {
 
             <div className='sidebar-section-container'>
                 <NavLink className={window.location.pathname === "/" ? "btn-navlink-sidebar selected" : "btn-navlink-sidebar" } to="/">Todos los productos</NavLink>
-                <NavLink className={window.location.pathname === "/select" ? "btn-navlink-sidebar selected" : "btn-navlink-sidebar" } to="/select">Solo productos seleccionados</NavLink>
+                <NavLink className={window.location.pathname === "/select" ? "btn-navlink-sidebar selected" : "btn-navlink-sidebar" } to="/onlySelect">Solo productos seleccionados</NavLink>
             </div>
             {/* MODIFICAR HASTA AQUI */}
         </div>
