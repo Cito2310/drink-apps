@@ -1,13 +1,14 @@
-import { useLayoutEffect, useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from 'react';
 
 import { IProduct } from '../interfaces/IProduct';
 
 import "./cards.scss"
-import { contextStatusApp } from '../Providers/ProviderStatusApp';
 import { colorFlavor } from '../helpers/colorFlavor';
-import { contextRespProducts } from '../Providers/ProviderProducts';
+import { useCountdown } from '../hooks/useCountdown';
+
+import { useAppDispatch } from '../store';
+import { startUpdateAmountById } from '../store/product';
+import { setCurrent } from '../store/modal';
 
 interface props {
     product: IProduct
@@ -15,39 +16,31 @@ interface props {
 
 export const Cards = ( { product }: props ) => {
     const { brand, flavor, location, size, category } = product;
-
+    const dispatch = useAppDispatch()
     
     // CONTROLLERS - CHANGE AMOUNT
     const [amount, setAmount] = useState<number>(product.amount);
-    const [timerAmount, setTimerAmount] = useState<string | boolean>("");
-    const { onChangeAmountProductArray } = useContext(contextRespProducts)
     
-    const checkTimer = (timerAmount === true || timerAmount === "");
+    const [ startCountdown ] = useCountdown( 800, 
+        async() => dispatch( startUpdateAmountById( product._id, amount ) )
+    );
+
     const changePlusAmount = () => {
-        if (amount < 50) {
-            setAmount(amount + 1);
-            if (checkTimer) setTimerAmount(false);
-    }}
+        if ( amount > 50 ) return;
+        setAmount( amount => amount + 1 );
+        startCountdown();
+    }
 
     const changeSubAmount = () => {
-        if (amount > 0) {
-            setAmount(amount - 1); 
-            if (checkTimer) setTimerAmount(false);
-    }}
-
-    useLayoutEffect(() => {
-        if (timerAmount === false) {setTimeout(()=>{setTimerAmount(true)}, 800)}
-        if (timerAmount === true) {
-            axios.put(`https://node-ts-load-drink.onrender.com/api/product/amount/${product._id}`, {newAmount: amount});
-            onChangeAmountProductArray( product, amount )
-        }
-    }, [timerAmount])
+        if ( amount <= 0 ) return;
+        setAmount( amount => amount - 1 );
+        startCountdown();
+    }
 
 
     // CONTROLLERS - EDIT AND REMOVE
-    const { setCurrentStatusApp, setProductSelected } = useContext(contextStatusApp)
-    const onEdit = (): void => { setProductSelected(product); setCurrentStatusApp('edit') }
-    const onRemove = (): void => { setProductSelected(product); setCurrentStatusApp('delete') }
+    const onEdit = () => dispatch( setCurrent({ current: "update", product }) );
+    const onDelete = () => dispatch( setCurrent({ current: "delete", product }));
 
 
     // RENDER
@@ -65,7 +58,7 @@ export const Cards = ( { product }: props ) => {
                     </div>
                     <div className='container-button-edit-delete'>
                         <button onClick={onEdit}><i className="fa-solid fa-pen"/></button>
-                        <button onClick={onRemove}><i className="fa-solid fa-trash"/></button>
+                        <button onClick={onDelete}><i className="fa-solid fa-trash"/></button>
                     </div>
                 </div>
 

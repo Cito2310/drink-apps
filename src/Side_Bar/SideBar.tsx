@@ -1,20 +1,21 @@
-import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-
-import { contextSideBar } from './ProviderSideBarController';
 
 import "./side-bar.scss"
 import "./btn-nav-link.scss"
+import { useAppDispatch, useAppSelector } from '../store';
+import { toggleSidebar } from '../store/sidebar';
 
 export const SideBar = () => {
-    const { sidebarOpen, toggleSidebar } = useContext(contextSideBar)
+    const dispatch = useAppDispatch()
+    const onToggleSidebar = () => { dispatch( toggleSidebar() ) }
+    const { isOpen } = useAppSelector( state => state.sidebar )
 
     return (
-        <div className={sidebarOpen ? "sidebar open left" : "sidebar left"}> {/* PARA CAMBIAR EL LADO DONDE SE DESPLEGARA LA BARRA LATERAL CAMBIAR right | left */}
+        <div className={ isOpen ? "sidebar open left" : "sidebar left" }> {/* PARA CAMBIAR EL LADO DONDE SE DESPLEGARA LA BARRA LATERAL CAMBIAR right | left */}
             {/* MODIFICAR DESDE AQUI */}
             <div className='sidebar-section-top'>
                 <h2>Drink App</h2>
-                <i onClick={toggleSidebar} className="fa-solid fa-xmark"></i> {/* ESTE ELEMENTO ES REQUERIDO - NO BORRAR */}
+                <i onClick={ onToggleSidebar } className="fa-solid fa-xmark"></i> {/* ESTE ELEMENTO ES REQUERIDO - NO BORRAR */}
             </div>
 
             <div className='sidebar-section-container'>

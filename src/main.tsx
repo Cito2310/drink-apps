@@ -3,20 +3,15 @@ import ReactDOM from 'react-dom/client'
 import { HashRouter } from "react-router-dom"
 
 import { DrinkApp } from './DrinkApp'
-import { ProviderRespProducts } from './Providers/ProviderProducts'
-import { ProviderStatusApp } from './Providers/ProviderStatusApp'
-import { ProviderSideBar } from './Side_Bar/ProviderSideBarController'
+import { store } from './store/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <HashRouter>
-      <ProviderSideBar>
-      <ProviderStatusApp>
-      <ProviderRespProducts>
-          <DrinkApp/>
-      </ProviderRespProducts>
-      </ProviderStatusApp>
-      </ProviderSideBar>
+        <Provider store={ store }>
+            <DrinkApp/>
+        </Provider>
     </HashRouter>
-  // </React.StrictMode>
+  </React.StrictMode>
 )

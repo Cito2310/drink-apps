@@ -11,46 +11,51 @@ import "./styles/background-pattern.scss"
 
 import { LayoutProducts } from "./layout/LayoutProducts";
 
-import { contextStatusApp } from './Providers/ProviderStatusApp';
 
 import { ModalCreateProduct } from './Modal_Component/ModalCreateProduct';
 import { ModalEditProduct } from './Modal_Component/ModalEditProduct';
 import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
 
 import { IStateRespProduct } from './interfaces/IStateRespProduct';
-import { contextRespProducts } from './Providers/ProviderProducts';
+import { useAppDispatch, useAppSelector } from './store/store';
+import { getProducts } from './store/product/productThunks';
 
 export const DrinkApp = () => {
-    const { currentStatusApp } = useContext(contextStatusApp);
-    const { respProduct } = useContext(contextRespProducts);
+    // const { currentStatusApp } = useContext(contextStatusApp);
+    // const { respProduct } = useContext(contextRespProducts);
+    const { data, status } = useAppSelector( (state) => state.product )
+    const dispatch = useAppDispatch()
 
+    useEffect(() => {
+        dispatch( getProducts() )
+    }, [])
     
+
     return (
         <>
-            <div id="background-pattern"></div>
+            {/* <div id="background-pattern"></div>
             {(currentStatusApp === "delete") ? <ModalDeleteProduct/> : null}
             {(currentStatusApp === "edit") ? <ModalEditProduct/> : null}
             {(currentStatusApp === "create") ? <ModalCreateProduct/> : null}
+            */}
             {
-                (respProduct.status) 
-                ?<Routes>
-                    <Route path="/" element={
-                        <LayoutProducts>
-                            <CardProductPage products={respProduct.data}/>
-                        </LayoutProducts>
-                    }/>
-                    
-                    <Route path="/select" element={
-                        <LayoutProducts>
-                            <ListSelectPage products={respProduct.data}/>
-                        </LayoutProducts>
-                    }/>
+                ( status.isLoading )
+                ? <LoadingScreen/>
 
-                    <Route path="/*" element={<Navigate to={"/"}/>} />
-                </Routes>
+                : (
+                    <LayoutProducts>
+                        <Routes>
 
-                : <LoadingScreen/>
-            }
+                            <Route path='/' element={ <CardProductPage products={ data } /> }/>
+
+                            <Route path='/onlySelect' element={ <ListSelectPage products={ data } /> }/>
+
+                            <Route path='/*' element={ <Navigate to={"/"}/> } />
+
+                        </Routes>
+                    </LayoutProducts>
+                )
+            } 
         </>
     )
 }

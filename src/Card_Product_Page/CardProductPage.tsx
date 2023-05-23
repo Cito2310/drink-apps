@@ -1,11 +1,11 @@
-import { IProduct } from '../interfaces/IProduct';
 import { Cards } from './Cards';
 
 import "./card-section.scss"
 import { CardNewProduct } from './CardNewProduct';
+import { Product } from '../types/product';
 
 interface props {
-    products: IProduct[]
+    products: Product[]
 }
 
 export const CardProductPage = ({ products }: props) => {

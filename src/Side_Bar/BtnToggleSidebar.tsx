@@ -1,12 +1,14 @@
-import { useContext } from 'react';
-import { contextSideBar } from './ProviderSideBarController';
-
 import "./btn-toggle-sidebar.scss"
+import { useAppDispatch } from '../store';
+import { toggleSidebar } from "../store/sidebar";
 
 export const BtnToggleSidebar = () => {
-    const {toggleSidebar} = useContext(contextSideBar)
+    const dispatch = useAppDispatch()
+    const onToggleSidebar = () => { dispatch( toggleSidebar() ) }
 
     return (
-        <button id='btn-toggle-sidebar' onClick={toggleSidebar}><i className="fa-solid fa-bars"></i></button>
+        <button id='btn-toggle-sidebar' onClick={ onToggleSidebar }>
+            <i className="fa-solid fa-bars"/>
+        </button>
     )
 }

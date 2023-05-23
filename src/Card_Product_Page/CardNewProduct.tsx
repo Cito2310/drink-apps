@@ -1,12 +1,14 @@
 import "./cards.scss"
 import "./card-new-product.scss"
-import { useContext } from 'react';
-import { contextStatusApp } from '../Providers/ProviderStatusApp';
+
+import { useAppDispatch } from "../store";
+import { setCurrent } from "../store/modal";
 
 
 export const CardNewProduct = () => {
-    const { setCurrentStatusApp } = useContext(contextStatusApp)
-    const onCreateProduct = () => { setCurrentStatusApp("create") }
+    const dispatch = useAppDispatch();
+
+    const onCreateProduct = () => { dispatch( setCurrent({ current: "create" }) ) }
 
     return (
         <div className='card-container card-new-product' onClick={onCreateProduct}>
