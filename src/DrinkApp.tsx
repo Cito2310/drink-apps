@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom"
-import axios from "axios";
 
 import { CardProductPage } from "./Card_Product_Page/CardProductPage"
 import { ListSelectPage } from './List_Select_Page/ListSelectPage';
@@ -13,17 +12,15 @@ import { LayoutProducts } from "./layout/LayoutProducts";
 
 
 import { ModalCreateProduct } from './Modal_Component/ModalCreateProduct';
-import { ModalEditProduct } from './Modal_Component/ModalEditProduct';
+import { ModalUpdateProduct } from './Modal_Component/ModalUpdateProduct';
 import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
 
-import { IStateRespProduct } from './interfaces/IStateRespProduct';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { getProducts } from './store/product/productThunks';
 
 export const DrinkApp = () => {
-    // const { currentStatusApp } = useContext(contextStatusApp);
-    // const { respProduct } = useContext(contextRespProducts);
     const { data, status } = useAppSelector( (state) => state.product )
+    const { current } = useAppSelector( (state) => state.modal )
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -33,11 +30,10 @@ export const DrinkApp = () => {
 
     return (
         <>
-            {/* <div id="background-pattern"></div>
-            {(currentStatusApp === "delete") ? <ModalDeleteProduct/> : null}
-            {(currentStatusApp === "edit") ? <ModalEditProduct/> : null}
-            {(currentStatusApp === "create") ? <ModalCreateProduct/> : null}
-            */}
+            { current === "create" && <ModalCreateProduct /> }
+            { current === "delete" && <ModalDeleteProduct /> }
+            { current === "update" && <ModalUpdateProduct /> }
+
             {
                 ( status.isLoading )
                 ? <LoadingScreen/>

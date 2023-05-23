@@ -1,25 +1,19 @@
-import { useContext, useState } from 'react';
-import axios from 'axios';
-
-import { IReqHttp } from '../interfaces/IReqHttp';
-
 import { ModalLayout } from './ModalLayout';
 
-import { contextStatusApp } from '../Providers/ProviderStatusApp';
-import { contextRespProducts } from '../Providers/ProviderProducts';
-
-import { checkInputsProduct } from './helpers/checkInputs';
 import { useForm } from './helpers/useForm';
 
 import { FormInputText } from './components/FormInputText';
 import { FormInputNumber } from './components/FormInputNumber';
+import { useAppDispatch } from '../store';
+import { closeModal } from '../store/modal';
+import { startCreateProduct } from '../store/product';
 
 
 
 export const ModalCreateProduct = () => {
     // CONTROLLER STATUS APP
-    const { setCurrentStatusApp, productSelected } = useContext(contextStatusApp);
-    const onStatusNone = () => {setCurrentStatusApp("none")};
+    const dispatch = useAppDispatch();
+    const onCloseModal = () => { dispatch( closeModal() ) };
 
     // CONTROLLER FORM
     const {
@@ -41,24 +35,8 @@ export const ModalCreateProduct = () => {
     })
 
     // CONTROLLER FORM REQ HTTP
-    const [reqHttp, setReqHttp] = useState<IReqHttp>({ status: "none" , msg: "Ha ocurrido un error " })
-
-    // CONTROLLER SUBMIT AND PRODUCT
-    const { onAddProductsArray } = useContext(contextRespProducts)
-
-    const onSubmitEdit = async(event: React.FormEvent) => {
-        event.preventDefault();
-        try {
-            if (checkInputsProduct( formState, setReqHttp )) {
-                setReqHttp({ status:"loading", msg:"" });
-                const { data } = await axios.post(`https://node-ts-load-drink.onrender.com/api/product/`, formState);
-                onAddProductsArray(data)
-                setReqHttp({ status:"ready", msg:"" });
-                setTimeout(onStatusNone, 300)
-            }
-        } catch (error) {
-            setReqHttp({ status:"error", msg:"Ha ocurrido un error"})
-        }
+    const onSubmit = async() => {
+        await dispatch( startCreateProduct( formState ) )
     }
 
 
@@ -68,12 +46,12 @@ export const ModalCreateProduct = () => {
             <div id="modal-top">
                 <h3>Crear Producto</h3>
 
-                <button onClick={onStatusNone}>
+                <button onClick={ onCloseModal }>
                     <i className="fa-solid fa-xmark"/>
                 </button>
             </div>
 
-            <form onSubmit={onSubmitEdit}>
+            <form onSubmit={onSubmit}>
                 <div id="modal-body">
                     <FormInputText
                         label='Marca'
@@ -113,9 +91,9 @@ export const ModalCreateProduct = () => {
                 </div>
 
                 <div id="modal-bottom">
-                    {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg} <i className="fa-solid fa-exclamation"/></p> : null}
+                    {/* {reqHttp.status === "error" ? <p className='advert-error'>{reqHttp.msg} <i className="fa-solid fa-exclamation"/></p> : null}
                     {reqHttp.status === "loading" ? <p className='advert-loading'><i className="spinner fa-solid fa-spinner"/></p> : null}
-                    {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null}
+                    {reqHttp.status === "ready" ? <p className='advert-ready'>Hecho <i className="fa-solid fa-check"/></p> : null} */}
                     <input className='btn-modal btn-color-primary' type="submit" value="Crear"/>
                 </div>
             </form>
