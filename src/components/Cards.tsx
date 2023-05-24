@@ -35,7 +35,10 @@ export const Cards = ( { product }: props ) => {
 
     // RENDER
     return (
-        <div className='flex flex-column flex-1 min-h-[121px] min-w-[300px] rounded-md p-3.5 bg-card bg-card_bg shadow-md gap-3'>
+        <div className='
+            flex flex-column flex-1 min-w-[300px] rounded-md p-3.5 bg-card bg-card_bg shadow-md gap-3
+            sm:min-w-[200px]
+        '>
             <div className='flex-grow flex flex-col'>
 
                 <p className='font-title text-2xl uppercase font-semibold'>{brand}</p>

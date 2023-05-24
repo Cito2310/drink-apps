@@ -9,7 +9,10 @@ export const ListPage = ({ products }: props) => {
     return (
 
             
-        <li className='py-6 px-14 bg-backgroundColor h-screen flex flex-col gap-2'>
+        <li className='
+            py-6 px-14 bg-backgroundColor h-screen flex flex-col gap-2
+            sm:p-3 md:p-4
+        '>
             {
                 products.map( product => (product.amount !== 0) 
                     ? <ListItem key={product._id} product={product} /> 

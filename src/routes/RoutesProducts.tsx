@@ -18,7 +18,7 @@ export const RoutesProducts = ({ data }: props) => {
                 }/>
 
 
-                <Route path='/' element={ 
+                <Route path='/onlySelect' element={ 
                     <LayoutProducts>
                         <ListPage products={ data } />
                     </LayoutProducts>

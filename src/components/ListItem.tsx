@@ -16,12 +16,16 @@ export const ListItem = ({ product } : props) => {
     return (
         <li className='
             bg-card_bg
-            grid grid-cols-[2fr_2fr_1fr_4em]
+            grid grid-cols-[2fr_2fr_1fr_3em]
             rounded-md
             items-center
             uppercase
             px-6
             shadow-md
+            gap-2
+            sm:text-sm
+            md:px-4
+            sm:px-3
         '>
             <p>{ brand }</p>
             <p>{ `${ flavor } ${ size }` }</p>
