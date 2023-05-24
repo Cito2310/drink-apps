@@ -1,4 +1,5 @@
 export const getEnviroments = () => {
-    import.meta.env;
-    return { ...import.meta.env }
+    return { 
+        VITE_BASEURL: import.meta.env+""
+    }
 }
