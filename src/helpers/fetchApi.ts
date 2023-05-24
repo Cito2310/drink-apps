@@ -8,7 +8,6 @@ interface Options {
 
 export const fetchApi = async ( url: string, options?: Options ) => {
     const { VITE_BASEURL } = getEnviroments();
-
     const resp = await fetch( (url.includes( VITE_BASEURL ) ? url : VITE_BASEURL + url), options );
     const data = await resp.json();
     
