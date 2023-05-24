@@ -1,7 +1,7 @@
-import { fetchApi } from "../../helpers/fetchApi";
-import { FormProductData } from "../../types/formProductData";
-import { AppDispatch, RootState } from "../store";
 import { createProduct, initLoading, setProducts, stopLoading, updateProduct } from "./";
+import { fetchApi } from "../../helpers";
+import { AppDispatch, RootState } from "../store";
+import { FormProductData } from "../../types";
 
 export const getProducts = () => {
     return async( dispatch: AppDispatch ) => {

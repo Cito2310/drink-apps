@@ -1,9 +1,8 @@
-import { IProduct } from '../interfaces/IProduct';
-import { useAppDispatch } from '../store';
-import { startUpdateAmountById } from '../store/product';
+import { useAppDispatch, startUpdateAmountById } from '../store';
+import { Product } from '../types/';
 
 interface props {
-    product: IProduct;
+    product: Product;
 }
 
 export const ListItem = ({ product } : props) => {
@@ -15,7 +14,7 @@ export const ListItem = ({ product } : props) => {
     }
 
     return (
-        <div className='
+        <li className='
             bg-card_bg
             grid grid-cols-[2fr_2fr_1fr_4em]
             rounded-md
@@ -37,6 +36,6 @@ export const ListItem = ({ product } : props) => {
                     <i className="fa-solid fa-xmark"/>
                 </button>
             </div>
-        </div>
+        </li>
     )
 }

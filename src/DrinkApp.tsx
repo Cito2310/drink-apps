@@ -1,19 +1,8 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate } from "react-router-dom"
-
-import { CardProductPage } from "./Card_Product_Page/CardProductPage"
-import { ListSelectPage } from './List_Select_Page/ListSelectPage';
-import { LoadingScreen } from "./components/LoadingScreen";
-
-import { LayoutProducts } from "./layout/LayoutProducts";
-
-
-import { ModalCreateProduct } from './Modal_Component/ModalCreateProduct';
-import { ModalUpdateProduct } from './Modal_Component/ModalUpdateProduct';
-import { ModalDeleteProduct } from './Modal_Component/ModalDeleteProduct';
-
+import { LoadingScreen, ModalCreateProduct, ModalUpdateProduct, ModalDeleteProduct } from "./components";
 import { useAppDispatch, useAppSelector } from './store/store';
 import { getProducts } from './store/product/productThunks';
+import { RoutesProducts } from './routes/RoutesProducts';
 
 export const DrinkApp = () => {
     const { data, status } = useAppSelector( (state) => state.product )
@@ -29,21 +18,8 @@ export const DrinkApp = () => {
         <>
             {
                 ( status.isLoading )
-                ? <LoadingScreen/>
-
-                : (
-                    <LayoutProducts>
-                        <Routes>
-
-                            <Route path='/' element={ <CardProductPage products={ data } /> }/>
-
-                            <Route path='/onlySelect' element={ <ListSelectPage products={ data } /> }/>
-
-                            <Route path='/*' element={ <Navigate to={"/"}/> } />
-
-                        </Routes>
-                    </LayoutProducts>
-                )
+                ? <LoadingScreen />
+                : <RoutesProducts  data={ data } />
             } 
 
             { current === "create" && <ModalCreateProduct /> }

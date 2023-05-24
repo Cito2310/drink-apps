@@ -1,16 +1,10 @@
 import { useState } from 'react';
-
-import { IProduct } from '../interfaces/IProduct';
-
-import { colorFlavor } from '../helpers/colorFlavor';
-import { useCountdown } from '../hooks/useCountdown';
-
-import { useAppDispatch } from '../store';
-import { startUpdateAmountById } from '../store/product';
-import { setCurrent } from '../store/modal';
+import { useCountdown } from '../hooks';
+import { useAppDispatch, setCurrentModal, startUpdateAmountById } from '../store';
+import { Product } from '../types/';
 
 interface props {
-    product: IProduct
+    product: Product
 }
 
 export const Cards = ( { product }: props ) => {
@@ -19,7 +13,7 @@ export const Cards = ( { product }: props ) => {
     
     const [amount, setAmount] = useState<number>(product.amount);
     
-    const [ startCountdown ] = useCountdown( 800, 
+    const startCountdown = useCountdown( 800, 
         async() => dispatch( startUpdateAmountById( product._id, amount ) )
     );
 
@@ -35,8 +29,8 @@ export const Cards = ( { product }: props ) => {
         startCountdown();
     }
 
-    const onUpdate = () => dispatch( setCurrent({ current: "update", product }) );
-    const onDelete = () => dispatch( setCurrent({ current: "delete", product }));
+    const onUpdate = () => dispatch( setCurrentModal({ current: "update", product }) );
+    const onDelete = () => dispatch( setCurrentModal({ current: "delete", product }));
 
 
     // RENDER

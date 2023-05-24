@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-
 interface props {
     onClick?: () => void;
 }

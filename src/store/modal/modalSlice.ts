@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Product } from '../../types/product';
+import { Product } from '../../types';
 
 type CurrentModal = "create" | "delete" | "update"
 
@@ -18,7 +18,7 @@ export const modalSlice = createSlice({
     initialState,
     reducers: {
 
-        setCurrent: ( state, action: { payload: { current: CurrentModal, product?: Product } } ) => {
+        setCurrentModal: ( state, action: { payload: { current: CurrentModal, product?: Product } } ) => {
             state.current = action.payload.current;
             state.selectedProduct = action.payload.product || null;
         },
@@ -31,4 +31,4 @@ export const modalSlice = createSlice({
     }
 });
 
-export const { setCurrent, closeModal } = modalSlice.actions;
+export const { setCurrentModal, closeModal } = modalSlice.actions;

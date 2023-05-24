@@ -27,5 +27,5 @@ export const useCountdown = ( milliseconds: number, callback: () =>  void ) => {
     }, [counter, running]);
 
 
-    return [ startCountdown ];
+    return startCountdown;
 };
