@@ -40,24 +40,28 @@ export const ModalCreateProduct = () => {
                     label="Marca"
                     name="brand" value={brand} 
                     type="text" onInput={onInputChange} 
+                    placeholder="Inserte la marca"
                 />
                 
                 <InputForm 
                     label="Categoria"
                     name="category" value={category} 
                     type="text" onInput={onInputChange} 
+                    placeholder="Inserte la categoria"
                 />
 
                 <InputForm 
                     label="Sabor"
                     name="flavor" value={flavor} 
                     type="text" onInput={onInputChange} 
+                    placeholder="Inserte el sabor"
                 />
 
                 <InputForm 
                     label="Tamaño"
                     name="size" value={size} 
                     type="text" onInput={onInputChange} 
+                    placeholder="Inserte la tamaño"
                 />
 
                 <InputForm 
