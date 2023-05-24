@@ -1,7 +1,7 @@
-import { IProduct } from '../interfaces/IProduct';
+import { Product } from "../types"
 
-export const getOrderProduct = (products: IProduct[]) => {
-    const compare = ( a: IProduct, b: IProduct ) => {
+export const getOrderProduct = (products: Product[]) => {
+    const compare = ( a: Product, b: Product ) => {
         if ( a.location < b.location ) return -1
         if ( a.location > b.location ) return 1
         
