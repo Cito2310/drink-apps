@@ -21,8 +21,9 @@ export const ModalCreateProduct = () => {
         formState, onInputChange, onResetForm
     } = useForm( initForm );
 
-    const onCreate = async() => {
-        await dispatch( startCreateProduct( formState ) )
+    const onCreate = async( event: React.FormEvent<HTMLFormElement> ) => {
+        event.preventDefault();
+        await dispatch( startCreateProduct( formState ) );
     }
 
     return (

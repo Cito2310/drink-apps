@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useCountdown } from '../hooks';
 import { useAppDispatch, setCurrentModal, startUpdateAmountById } from '../store';
-import { Product } from '../types/';
+import { Product } from '../types';
+import { getUrlCardImageWithBrand } from '../helpers';
 
 interface props {
     product: Product
 }
 
-export const Cards = ( { product }: props ) => {
+export const Card = ( { product }: props ) => {
     const { brand, flavor, location, size, category } = product;
     const dispatch = useAppDispatch()
     
@@ -41,7 +42,8 @@ export const Cards = ( { product }: props ) => {
         '>
             <div className='flex-grow flex flex-col'>
 
-                <p className='font-title text-2xl uppercase font-semibold'>{brand}</p>
+                <img className='rounded-md' src={getUrlCardImageWithBrand( brand )} />
+                {/* <p className='font-title text-2xl uppercase font-semibold'>{brand}</p> */}
                 <p className='capitalize text-lg'>
                     <b className='font-medium'>SABOR: </b> 
                     { `${ flavor } ${ size }` } 

@@ -4,7 +4,7 @@ interface props {
     buttons?: ButtonProps[],
     children: JSX.Element | JSX.Element[],
     onExit?: () => void,
-    onSubmit?: () => void,
+    onSubmit?: ( event: React.FormEvent<HTMLFormElement> ) => void,
     title: string,
 }
 

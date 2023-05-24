@@ -2,6 +2,7 @@ import { createProduct, initLoading, setProducts, stopLoading, updateProduct } f
 import { fetchApi } from "../../helpers";
 import { AppDispatch, RootState } from "../store";
 import { FormProductData } from "../../types";
+import { closeModal } from "../modal";
 
 export const getProducts = () => {
     return async( dispatch: AppDispatch ) => {
@@ -28,7 +29,6 @@ export const startUpdateAmountById = ( id: string, newAmount: number ) => {
         );
 
         dispatch( updateProduct( data ) );
-        
     };
 };
 
@@ -46,6 +46,7 @@ export const startCreateProduct = ( createProductData: FormProductData ) => {
 
         dispatch( createProduct( data ) );
         dispatch( stopLoading() );
+        dispatch( closeModal() );
     }
 }
 
@@ -63,6 +64,7 @@ export const startUpdateProductById = ( id: string, updateProductData: FormProdu
 
         dispatch( updateProduct( data ) );
         dispatch( stopLoading() );
+        dispatch( closeModal() );
     }
 }
 
@@ -73,5 +75,6 @@ export const startDeleteProductById = ( id: string ) => {
         await fetchApi( `api/product/${ id }`, { method: "DELETE" } );
 
         dispatch( stopLoading() );
+        dispatch( closeModal() );
     }
 }

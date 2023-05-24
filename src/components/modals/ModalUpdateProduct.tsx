@@ -9,8 +9,10 @@ export const ModalUpdateProduct = () => {
 
     const { selectedProduct } = useAppSelector( state => state.modal );
 
-    const onUpdate = async() => {
-        await dispatch( startUpdateProductById( selectedProduct!._id, formState ) )
+    const onUpdate = async( event: React.FormEvent<HTMLFormElement> ) => {
+        event.preventDefault();
+        await dispatch( startUpdateProductById( selectedProduct!._id, formState ) );
+
     }
 
     const {

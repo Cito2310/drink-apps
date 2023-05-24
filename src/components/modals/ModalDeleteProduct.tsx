@@ -7,8 +7,9 @@ export const ModalDeleteProduct = () => {
 
     const { selectedProduct } = useAppSelector( state => state.modal );
 
-    const onDelete = async() => {
-        await dispatch( startDeleteProductById( selectedProduct!._id ) )
+    const onDelete = async( event: React.FormEvent<HTMLFormElement> ) => {
+        event.preventDefault();
+        await dispatch( startDeleteProductById( selectedProduct!._id ) );
     }
 
 
