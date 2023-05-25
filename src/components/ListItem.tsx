@@ -1,4 +1,4 @@
-import { useAppDispatch, startUpdateAmountById } from '../store';
+import { useAppDispatch, startAmountToZero } from '../store';
 import { Product } from '../types/';
 
 interface props {
@@ -10,7 +10,7 @@ export const ListItem = ({ product } : props) => {
     const dispatch = useAppDispatch();
 
     const onAmountZero = () => {
-        dispatch( startUpdateAmountById( product._id, 0 ) )
+        dispatch( startAmountToZero( product ) )
     }
 
     return (

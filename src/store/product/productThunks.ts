@@ -1,7 +1,7 @@
 import { createProduct, initLoading, setProducts, stopLoading, updateProduct } from "./";
 import { fetchApi } from "../../helpers";
 import { AppDispatch, RootState } from "../store";
-import { FormProductData } from "../../types";
+import { FormProductData, Product } from "../../types";
 import { closeModal } from "../modal";
 
 export const getProducts = () => {
@@ -31,6 +31,22 @@ export const startUpdateAmountById = ( id: string, newAmount: number ) => {
         dispatch( updateProduct( data ) );
     };
 };
+
+export const startAmountToZero = ( product: Product ) => {
+    return async( dispatch: AppDispatch, getState: () => RootState ) => {
+
+        dispatch( updateProduct({...product, amount: 0}) );
+        await fetchApi(`api/product/amount/${ product._id }`,
+            {
+                headers: { "Content-Type": "application/json" },
+                method: "PUT",
+                body: JSON.stringify({ newAmount: 0 })
+            }
+        )
+
+    }
+}
+
 
 export const startCreateProduct = ( createProductData: FormProductData ) => {
     return async( dispatch: AppDispatch, getState: () => RootState ) => {
